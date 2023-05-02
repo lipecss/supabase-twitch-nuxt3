@@ -15,6 +15,10 @@ export default defineNuxtRouteMiddleware(async () => {
     if (event == 'TOKEN_REFRESHED') {
       console.log('refresh', token)
     }
+
+    if (event == 'SIGNED_OUT') {
+      console.log('signout')
+    }
   })
   
 
