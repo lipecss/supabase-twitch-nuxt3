@@ -9,6 +9,7 @@ definePageMeta({
 const { $supabase } = useNuxtApp()
 const config = useRuntimeConfig()
 
+console.log('config.public.baseUrl', config.public.baseUrl)
 const signInWithTwitch = async () => {
   const { error, data } = await $supabase.auth.signInWithOAuth({
     provider: 'twitch',
