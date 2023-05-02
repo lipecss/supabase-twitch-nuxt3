@@ -4,6 +4,7 @@
       <img 
         :src="user.user_metadata.avatar_url"
         alt="avatar"
+        title="avatar"
         class="shadow-lg rounded-full max-w-full h-auto align-middle border-none mb-6"
       >
     </nuxt-link>
