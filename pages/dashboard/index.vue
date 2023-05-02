@@ -1,5 +1,22 @@
 <template> 
-  <section class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+  <section class="flex content-center items-center w-full justify-center">
+    <nuxt-link :to="`https://www.twitch.tv/${user.user_metadata.name}`" target="_blank">
+      <img 
+        :src="user.user_metadata.avatar_url"
+        alt="avatar"
+        class="shadow-lg rounded-full max-w-full h-auto align-middle border-none mb-6"
+      >
+    </nuxt-link>
+  </section>
+
+  <section class="bg-grey-2 p-8">
+    <h1 class="text-white text-2xl mb-6 font-bold">About you channel</h1>
+    <h2 class="text-white">
+      {{ user.user_metadata.custom_claims.description }}
+    </h2>
+  </section>
+
+  <section class="grid md:grid-cols-2 xl:grid-cols-4 gap-6 mt-10">
     <div class="flex items-center p-8 bg-grey-3 shadow rounded-lg" style="border: 1px solid #53535f7a">
       <div
         class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-purple-600 bg-purple-100 rounded-full mr-6">
@@ -14,13 +31,6 @@
       </div>
     </div>
   </section>
-
-  <section>
-    <h1 class="text-purple-700 text-3xl my-10">Description</h1>
-    <h2 class="text-white">
-      {{ user.user_metadata.custom_claims.description }}
-    </h2>
-  </section>
 </template>
 
 <script setup>
@@ -28,6 +38,7 @@ definePageMeta({
   middleware: 'auth',
   layout: 'admin'
 })
+
 const { $supabase } = useNuxtApp()
 const user = useSupabaseUser()
 // const supabase = useSupabaseClient()

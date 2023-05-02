@@ -1,9 +1,7 @@
 <template>
   <Navbar :is-authenticate="authenticated" :profile-img="avatar" />
 
-  <aside id="logo-sidebar"
-    class="fixed top-0 left-0 z-40 w-52 pt-20 bg-grey-2 -64 h-screen"
-    aria-label="Sidebar">
+  <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-52 pt-20 bg-grey-2 -64 h-screen" aria-label="Sidebar">
     <div class="h-full px-3 pb-4 overflow-y-auto bg-grey-2">
       <ul class="space-y-2 font-medium">
         <li>
@@ -28,9 +26,7 @@
                 d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
               </path>
             </svg>
-            <span class="flex-1 ml-3 whitespace-nowrap">Kanban</span>
-            <span
-              class="inline-flex items-center justify-center px-2 ml-3 text-sm font-medium text-gray-800 bg-gray-200 rounded-full dark:bg-gray-700 dark:text-gray-300">Pro</span>
+            <span class="flex-1 ml-3 whitespace-nowrap">Profile</span>
           </NuxtLink>
         </li>
       </ul>
@@ -50,16 +46,11 @@ const { $supabase } = useNuxtApp()
 const user = useSupabaseUser()
 
 onMounted(() => {
-  const { data } = $supabase.auth.onAuthStateChange(async (event, session) => {
-    checkUser()
-  })
-
   checkUser()
 })
 
 onBeforeMount(() => {
-  // authListener.removeChannel()
-  console.log('authListener', authListener)
+  $supabase.removeAllChannels()
 })
 
 const avatar = computed(() => {

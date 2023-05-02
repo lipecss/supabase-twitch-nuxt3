@@ -1,7 +1,8 @@
 <template>
   <div class="mx-auto flex items-center justify-center bg-black" style="min-height: 70vh;">
     <div>
-      <p class="text-center text-md text-gray-400 font-light">Sign in with</p>
+      <img src="https://www.freepnglogos.com/uploads/stack-twitch-stream-schedule-png-5.png" alt="" width="200" height="200">
+      <p class="text-center text-xl text-gray-400 font-light">Sign in with</p>
       <div>
         <div class="flex items-center justify-center space-x-4 mt-3">
           <button

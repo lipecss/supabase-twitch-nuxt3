@@ -39,11 +39,12 @@ const props = defineProps({
 })
 
 const signout = async () => {
-  const { data, error } = await supabase.auth.signOut()
+  await supabase.auth.signOut()
 
-  console.log('data', data)
   await navigateTo('/')
 
   await supabase.auth.refreshSession()
+
+  // if (process.client) stopRefreshTimer()
 }
 </script>
