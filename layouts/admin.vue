@@ -40,7 +40,6 @@
 
 <script setup>
 let authenticated = ref(false)
-let authListener = ref(null)
 
 const { $supabase } = useNuxtApp()
 const user = useSupabaseUser()
@@ -54,7 +53,7 @@ onBeforeMount(() => {
 })
 
 const avatar = computed(() => {
-  return user.value ? user.value.user_metadata.avatar_url : ''
+  return user.value ? user.value.user_metadata?.avatar_url : ''
 })
 
 const checkUser = async () => {

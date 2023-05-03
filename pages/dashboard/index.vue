@@ -1,8 +1,8 @@
 <template> 
   <section class="flex content-center items-center w-full justify-center">
-    <nuxt-link :to="`https://www.twitch.tv/${user.user_metadata.name}`" target="_blank">
+    <nuxt-link :to="twitchUrl" target="_blank">
       <img 
-        :src="user.user_metadata.avatar_url"
+        :src="avatarUrl"
         alt="avatar"
         title="avatar"
         class="shadow-lg rounded-full max-w-full h-auto align-middle border-none mb-6"
@@ -13,7 +13,7 @@
   <section class="bg-grey-2 p-8">
     <h1 class="text-white text-2xl mb-6 font-bold">About you channel</h1>
     <h2 class="text-white">
-      {{ user.user_metadata.custom_claims.description }}
+      {{ channelDescription }}
     </h2>
   </section>
 
@@ -27,7 +27,7 @@
         </svg>
       </div>
       <div>
-        <span class="block text-2xl text-white font-bold">{{ user.user_metadata.custom_claims.view_count }}</span>
+        <span class="block text-2xl text-white font-bold">{{ channelViewers }}</span>
         <span class="block text-white">Views</span>
       </div>
     </div>
@@ -40,12 +40,21 @@ definePageMeta({
   layout: 'admin'
 })
 
-const { $supabase } = useNuxtApp()
 const user = useSupabaseUser()
-// const supabase = useSupabaseClient()
-// if (process.client) {
-//   const user = localStorage.getItem('sb-rikpkaholmbclsrznwbk-auth-token')
-const { data } = await $supabase.auth.getSession()
 
-console.log('user', user)
+const avatarUrl = computed(() => {
+  return user.value ? user.value.user_metadata.avatar_url : ''
+})
+
+const twitchUrl = computed(() => {
+  return user.value ? `https://www.twitch.tv/${user.value.user_metadata.name}` : ''
+})
+
+const channelDescription = computed(() => {
+  return user.value ? user.value.user_metadata.custom_claims.description : ''
+})
+
+const channelViewers = computed(() => {
+  return user.value ? user.value.user_metadata.custom_claims.view_count : ''
+})
 </script>

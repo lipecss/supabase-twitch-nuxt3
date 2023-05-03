@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="flex bg-grey-2 w-full px-8 py-2 items-center" style="min-height: 56px;">
-      <div class="z-50 w-1/2 text-white">Teste twitch auth supabase</div>
+      <div class="z-50 w-1/2 text-white">Twitch auth with supabase</div>
       <div class="w-1/2 text-right">
         <ul class="flex flex-row-reverse items-center">
           <li v-if="isAuthenticate" class="ml-5">

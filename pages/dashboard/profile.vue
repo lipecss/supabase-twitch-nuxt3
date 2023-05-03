@@ -43,7 +43,7 @@ const totalTitle = computed(() => {
 
 onMounted(() => {
   const { provider_token } = data.session
-  const { sub } = data.session.user.user_metadata
+  const { sub } = data.session.user?.user_metadata
 
   console.log('data.session', data.session)
 
@@ -63,8 +63,8 @@ onMounted(() => {
 })
 
 const updateChannel = async () => {
-  const { provider_token } = data.session
-  const { sub } = data.session.user.user_metadata
+  const { provider_token } = data?.session
+  const { sub } = data.session.user?.user_metadata
 
   try {
     const channel = await useFetch(`https://api.twitch.tv/helix/channels?broadcaster_id=${sub}`, {

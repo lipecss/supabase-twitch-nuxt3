@@ -6,10 +6,9 @@ export default defineNuxtRouteMiddleware(async () => {
 
   client.auth.onAuthStateChange(async (event, session) => {
     console.log('event', event)
-    if(process.client) {
-      console.log('aaa')
+    if(process.client && session) {
       token = JSON.parse(localStorage.getItem(Object.keys(localStorage).find(key => key.includes('sb-') && key.includes('auth-token')))).provider_token
-      await validToken(token, session.provider_refresh_token, config.public.twitchid, config.public.twitchClientSecret, client)
+      await validToken(token, session?.provider_refresh_token, config.public.twitchid, config.public.twitchClientSecret, client)
     }
 
     if (event == 'TOKEN_REFRESHED') {
